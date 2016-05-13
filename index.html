@@ -5,18 +5,22 @@
   <script>
     var rndUrl = "https://www.random.org/integers/?num=1&min=1&max=3&col=1&base=10&format=plain&rnd=new";
     function getRnd(){
-      return asyncgetcallback(rndUrl, "rock-paper-scissors", false, function(result){return result});
+      return asyncgetcallback(rndUrl, "rock-paper-scissors", false, function(result){console.log("Got random".concat(result)); return result});
     }
     function numToStr(num){
       if (num == 1) {
+        console.log(String(num).concat(" is rock."));
         return "rock";
       }
       if (num == 2) {
+        console.log(String(num).concat(" is paper."));
         return "paper";
       }
       if (num == 3) {
+        console.log(String(num).concat(" is scissors."));
         return "scissors";
       }
+      console.log(String(num).concat("?"));
       return "shoot";
     }
     function wins(user, pc){
