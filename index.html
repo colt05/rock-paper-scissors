@@ -1,4 +1,94 @@
 <html>
+  <title>Rock Paper Scissors</title>
   <script src="https://cdn.rawgit.com/colt05/get-request/master/latestupdater.js"></script>
   <script>importUpdater();</script>
+  <script>
+    var rndUrl = "https://www.random.org/integers/?num=1&min=1&max=3&col=1&base=10&format=plain&rnd=new";
+    function getRnd(){
+      return asyncget(rndUrl, "rock-paper-scissors");
+    }
+    function numToStr(num){
+      if (num == 1) {
+        return "rock";
+      }
+      if (num == 2) {
+        return "paper";
+      }
+      if (num == 3) {
+        return "scissors";
+      }
+      return "shoot";
+    }
+    function wins(user, pc){
+      if (user == pc) {
+        return "tie";
+      }
+      //rock vs. paper
+      if (user == "paper" && pc == "rock") {
+        return "user";
+      }
+      if (user == "rock" && pc == "paper") {
+        return "pc";
+      }
+      //rock vs. scissors
+      if (user == "rock" && pc == "scissors") {
+        return "user";
+      }
+      if (user == "scissors" && pc == "rock") {
+        return "pc";
+      }
+      //rock vs. rock
+      //done
+      //paper vs. rock
+      //done
+      //paper vs. scissors
+      if (user == "paper" && pc == "scissors") {
+        return "pc";
+      }
+      if (user == "scissors" && pc == "paper") {
+        return "user";
+      }
+      //scissors vs. rock, paper, and scissors
+      //done
+    }
+    function writeWins(usr) {
+      var temp = getRnd();
+      var tempStr = numToStr(temp);
+      var w = wins(usr, tempStr);
+      var writeStr = "User: ".concat(usr.concat(" Computer: ".concat(tempStr.concat("\n")))); //:P
+      if (w == "tie") {
+        document.write("Tie! ".concat(writeStr));
+        alert("Tie!");
+        return "tie";
+      }
+      if (w == "user") {
+        document.write("User! ".concat(writeStr));
+        alert("User!");
+        return "user";
+      }
+      if (w == "pc") {
+        document.write("Computer! ".concat(writeStr));
+        alert("Computer!");
+        return "pc";
+      }
+      alert("Error!");
+      document.write("Error!");
+      return "error";
+    }
+    function rock(){
+      writeWins("rock");
+    }
+    function paper(){
+      writeWins("paper");
+    }
+    function scissors(){
+      writeWins("scissors");
+    }
+    function startGame() {
+      document.write("<button onclick=\"rock()\">rock</button>");
+      document.write("<button onclick=\"paper()\">paper</button>");
+      document.write("<button onclick=\"scissors()\">scissors</button>");
+    }
+  </script>
+  <button onclick="startGame()">Start the game!</button>
 </html>
