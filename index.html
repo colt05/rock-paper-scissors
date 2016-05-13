@@ -5,7 +5,7 @@
   <script>
     var rndUrl = "https://www.random.org/integers/?num=1&min=1&max=3&col=1&base=10&format=plain&rnd=new";
     function getRnd(){
-      return asyncget(rndUrl, "rock-paper-scissors");
+      return asyncgetcallback(rndUrl, "rock-paper-scissors", false, function(result){return result});
     }
     function numToStr(num){
       if (num == 1) {
