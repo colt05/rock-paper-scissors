@@ -4,8 +4,8 @@
   <script>importUpdater();</script>
   <script>
     var rndUrl = "https://www.random.org/integers/?num=1&min=1&max=3&col=1&base=10&format=plain&rnd=new";
-    function getRnd(){
-      return asyncgetcallback(rndUrl, "rock-paper-scissors", false, function(result){console.log("Got random".concat(result)); return result});
+    function getRnd(callback){
+      return asyncgetcallback(rndUrl, "rock-paper-scissors", false, function(result){console.log("Got random".concat(result)); callback(result);});
     }
     function numToStr(num){
       if (num == 1) {
@@ -56,7 +56,7 @@
       //done
     }
     function writeWins(usr) {
-      var temp = getRnd();
+      getRnd(function(temp) {
       var tempStr = numToStr(temp);
       var w = wins(usr, tempStr);
       var writeStr = "User: ".concat(usr.concat(" Computer: ".concat(tempStr.concat("\n")))); //:P
@@ -79,6 +79,7 @@
       alert("Error!");
       document.write("Error!");
       return "error";
+      });
     }
     function rock(){
       writeWins("rock");
