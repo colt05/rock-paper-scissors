@@ -59,7 +59,8 @@
       getRnd(function(temp) {
       var tempStr = numToStr(temp);
       var w = wins(usr, tempStr);
-      var writeStr = "User: ".concat(usr.concat(" Computer: ".concat(tempStr.concat("\n")))); //:P
+      var writeStrA = "User: ".concat(usr.concat(" Computer: ".concat(tempStr.concat("</p>")))); //:P
+      var writeStr = "<p>".concat(writeStrA);
       console.log([temp, tempStr, w, writeStr]); //DEBUG
       if (w == "tie") {
         document.write("Tie! ".concat(writeStr));
